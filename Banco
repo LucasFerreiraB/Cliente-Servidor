@@ -1,58 +1,40 @@
-create database BD;
+drop database if exists DB;
+create database BD
+default collate utf8_general_ci
+default character set utf8;
+
 use BD;
 
 drop table if exists Usuario;
-drop table if exists Cursos;
-drop table if exists Videos;
-commit;
-
-create table Usuario(
-	IdUsuario integer (8) null,
-    Nome varchar (30) null,
-    Email varchar (60) null,
-    Senha numeric (10) null,
-    Timetoken timestamp null
-  );
-alter table Usuario  add constraint  Usuario_PK 
-	primary key (IdUsuario);
+create table if not exists Usuario(
+	IdUsuario bigint unsigned not null primary key auto_increment,
+	Nome varchar(50) not null,
+	Email varchar(60) not null,
+	Senha varchar(32) not null,
+	hashtoken varchar(32),
+	Timetoken timestamp
+)default charset = utf8 engine = InnoDB;
   
-insert into Usuario 
-	(IdUsuario, Nome, Email, Senha)
-values 
-	(1, 'Lucas', 'lucasferreira9b@gmail.com', 5163131); 
+insert into Usuario (Nome, Email, Senha) values 
+('Lucas', 'lucasferreira9b@gmail.com', MD5(5163131)); 
 
-create table Cursos(
-	idCurso numeric (8) null,
-    Sobre varchar (500) null,
-    CargaHoraria timestamp (6) null
-    );
+drop table if exists Cursos;
+create table if not exists Cursos(
+	idCurso bigint unsigned not null auto_increment primary key,
+	Sobre text,
+	CargaHoraria timestamp not null
+)default charset = utf8 engine = InnoDB;
 
-alter table Cursos  add constraint  Cursos_PK 
-	primary key (IdCurso);
+insert into Cursos (idCurso, Sobre, CargaHoraria) values
+(1, 'asdasdasdasd', '2019-09-24');
 
-insert into Cursos 
-		(idCurso, Sobre, CargaHoraria)	
-values 
-		(1, 'asdasdasdasd', '2019-09-24');
+drop table if exists Videos;        
+create table if not exists Videos(
+	idVideo bigint not null primary key,
+	curso bigint unsigned not null,
+	Tempo time not null,
+	Tema varchar (15) NOT null,
+    foreign key(curso) references Cursos(idCurso)
+)default charset = utf8 engine = InnoDB;
         
-        
-create table Videos(
-	idVideo numeric (8) null,
-    TipoVideo numeric (8) null,
-    Tempo time (6) null,
-    Tema varchar (15) null
-    );
-    
-alter table Videos  add constraint  Videos_PK 
-	primary key (IdVideo);
-    
 select * from Cursos ;
-
-     
-    
-
-
-
-
-
-
