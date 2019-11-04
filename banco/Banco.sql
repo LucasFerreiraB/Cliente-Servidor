@@ -1,9 +1,9 @@
-drop database if exists DB;
-create database BD
+drop database if exists cursos;
+create database cursos
 default collate utf8_general_ci
 default character set utf8;
 
-use BD;
+use cursos;
 
 drop table if exists Usuario;
 create table if not exists Usuario(
@@ -36,5 +36,4 @@ create table if not exists Videos(
 	Tema varchar (15) NOT null,
     foreign key(curso) references Cursos(idCurso)
 )default charset = utf8 engine = InnoDB;
-        
-select * from Cursos ;
+
