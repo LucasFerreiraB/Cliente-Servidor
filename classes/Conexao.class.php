@@ -7,7 +7,7 @@
         function __construct(){
             
             $host   = "mysql:host=localhost";
-            $db     = "cursos";
+            $db     = "Curso";
             $pass   = "";
             $user   = "root";
 
