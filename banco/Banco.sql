@@ -13,7 +13,7 @@ create table if not exists Usuario(
 	Senha varchar(32) not null,
 	hashtoken varchar(32),
 	Timetoken timestamp
-)default charset = utf8 engine = InnoDB;
+) default charset = utf8 engine = InnoDB;
   
 insert into Usuario (Nome, Email, Senha) values 
 ('Lucas', 'lucasferreira9b@gmail.com', MD5(5163131)); 
@@ -23,7 +23,7 @@ create table if not exists Cursos(
 	idCurso bigint unsigned not null auto_increment primary key,
 	Sobre text,
 	CargaHoraria timestamp not null
-)default charset = utf8 engine = InnoDB;
+) default charset = utf8 engine = InnoDB;
 
 insert into Cursos (idCurso, Sobre, CargaHoraria) values
 (1, 'asdasdasdasd', '2019-09-24');
@@ -34,6 +34,16 @@ create table if not exists Videos(
 	curso bigint unsigned not null,
 	Tempo time not null,
 	Tema varchar (15) NOT null,
-    foreign key(curso) references Cursos(idCurso)
-)default charset = utf8 engine = InnoDB;
+    	constraint FK_CURSO_CURSOS_IDCURSO foreign key(curso) references Cursos(idCurso)
+) default charset = utf8 engine = InnoDB;
+
+drop table if exits Usuario_Curso;
+create table if not exists Usuario_Curso(
+	idUS integer (8) null primary key,
+	idCurso integer (8) null,
+    	idUsuario integer (8) null,
+	constraint FK_IDCURSO_CURSO_IDCURSO foreign key (idCurso) references Curso (idCurso),
+	contraint FK_IDCURSO_USUARIO_IDUSUARIO foreign key (idUsuario) references Usuario (idUsuario)
+) default charset = utf8 Engine = InnoDB ;
+    
 
