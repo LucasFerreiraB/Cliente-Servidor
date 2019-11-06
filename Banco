@@ -35,8 +35,7 @@ insert into Cursos
 		(idCurso, Sobre, cargaHoraria)	
 values 
 		(1, 'asdasdasdasd', '2019-09-24');
-        
-        
+
 create table Videos(
     idVideo numeric (8) null,
     tipoVideo numeric (8) null,
@@ -59,14 +58,4 @@ create table Usuario_Curso(
     );
     
 drop table Usuario_Curso;
-    
-
-     
-    
-
-
-
-
-
-
 
